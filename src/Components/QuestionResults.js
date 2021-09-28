@@ -1,12 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import PercentageBar from "./PercentageBar";
 
 import Avatar from "./Avatar";
 
 function QuestionResults({ questions, users, loggedUser }) {
   let { id } = useParams();
+  if (!Object.keys(questions).includes(id)) {
+    return <Redirect push to="/undefined" />;
+  }
 
   const userAnswer = users[loggedUser].answers[id];
 

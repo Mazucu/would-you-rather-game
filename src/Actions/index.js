@@ -8,7 +8,7 @@ export default function handleInitialData() {
     return getInitialData().then(({ users, questions }) => {
       dispatch(receiveQuestions(questions));
       dispatch(receiveUsers(users));
-      dispatch(loggedUser("johndoe"));
+      dispatch(loggedUser(""));
     });
   };
 }

@@ -15,7 +15,7 @@ function Question({ questions, users, id, isAnswered }) {
     if (isAnswered) {
       history.push(`/question-results/${id}`);
     } else {
-      history.push(`/question-form/${id}`);
+      history.push(`/questions/${id}`);
     }
   }
   return (

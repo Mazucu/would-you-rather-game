@@ -10,6 +10,7 @@ import QuestionResults from "./QuestionResults";
 import NewQuestion from "./NewQuestion";
 import Board from "./Board";
 import LogginPage from "./LoggInPage";
+import NotFound from "./NotFound";
 
 function App({ dispatch, loading, loggedOut }) {
   useEffect(() => {
@@ -27,19 +28,20 @@ function App({ dispatch, loading, loggedOut }) {
               <Route exact path="/">
                 <Home />
               </Route>
-              <Route path="/question-form/:id">
+              <Route path="/questions/:id">
                 <QuestionForm />
               </Route>
               <Route path="/question-results/:id">
                 <QuestionResults />
               </Route>
-              <Route path="/new-question">
+              <Route path="/add">
                 <NewQuestion />
               </Route>
-              <Route path="/board">
+              <Route path="/leaderboard">
                 <Board />
               </Route>
-              <Route component={Board} />
+              <Route component={NotFound} />
+              <NotFound />
             </Switch>
           </div>
         )}

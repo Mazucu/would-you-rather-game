@@ -1,13 +1,18 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, Redirect } from "react-router-dom";
 
 import Avatar from "./Avatar";
 import { handleSaveAnswer } from "../Actions/questions";
 
 function QuestionForm({ questions, users, loggedUser, dispatch }) {
   let { id } = useParams();
-  const [answer, setAnswer] = useState();
+  const history = useHistory();
+  const [answer, setAnswer] = useState("optionOne");
+
+  if (!Object.keys(questions).includes(id)) {
+    return <Redirect push to="/undefined" />;
+  }
 
   const question = questions[id];
   const {
@@ -17,8 +22,6 @@ function QuestionForm({ questions, users, loggedUser, dispatch }) {
   } = question;
 
   const { name: authorName, avatarURL } = users[author];
-
-  const history = useHistory();
 
   const handleChange = (e) => {
     setAnswer(e.target.value);
@@ -48,6 +51,7 @@ function QuestionForm({ questions, users, loggedUser, dispatch }) {
                   type="radio"
                   name="answer"
                   value="optionOne"
+                  checked
                   onChange={handleChange}
                 ></input>
                 {optionOne}
